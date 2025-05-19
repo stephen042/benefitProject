@@ -9,9 +9,7 @@ use App\Http\Controllers\User\ReceiveController;
 use App\Http\Controllers\Admin\AllUsersController;
 use App\Http\Controllers\Admin\AdminWalletAddresses;
 
-Route::get('/', function () {
-    return view('home.index');
-})->name('home');
+Route::redirect('/', '/login')->name('home');
 
 // Route::get('/learn', function () {
 //     return view('home.learn');
