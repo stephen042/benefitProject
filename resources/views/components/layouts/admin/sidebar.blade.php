@@ -11,7 +11,7 @@
 
         <a href="{{ route('admin.dashboard') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
             <div class="ml-1 grid flex-1 text-left text-sm">
-                <span class="mb-0.5 truncate leading-none font-bold">Admin PhantomxPro</span>
+                <span class="mb-0.5 truncate leading-none font-bold">Admin {{ config('app.name') }}</span>
             </div>
         </a>
 
