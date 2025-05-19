@@ -264,7 +264,7 @@
   <!-- calculator top end -->
 
   <!-- about section begin -->
-  <section class="about-section navigation" id="about-section">
+  {{-- <section class="about-section navigation" id="about-section">
     <div class="container">
       <div class="row">
         <div class="col-lg-7">
@@ -276,12 +276,12 @@
                 To meet <span>today's challenges</span>, we've created a
                 unique fund management system
               </h5>
-              {{-- <p class="about-description">
+              <p class="about-description">
                 Riskbenefitxpro - Our system is risk-free thanks to the development and
                 improvement of semi-automatic system of rates. We upgraded our
                 automatic system so that the last step before the rate is now
                 done by our operators.
-              </p> --}}
+              </p>
             </div>
 
             <div class="about-box">
@@ -370,20 +370,9 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
-          <div class="about-right">
-            <div class="video-box">
-              <img src="assets/img/about-bg.jpg" alt="#" />
-              <div class="icon-box">
-                <a href="https://www.youtube.com/watch?v=jvrayw6wANg" class="video-play-btn popup-video"><i
-                    class="ren-playicon"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- about section end -->
 
   <!-- choose section begin -->
