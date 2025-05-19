@@ -21,7 +21,7 @@
     </div>
     @fluxScripts
     {{-- livechat --}}
-    {{-- <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=n7twdAEfBRr4"></script> --}}
+    <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=IuDBje7xd2BU"></script>
 </body>
 
 </html>

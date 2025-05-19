@@ -81,7 +81,7 @@
               alt="logo" />RISKBENEFITPRO</a>
         </div>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="icofont-navigation-menu"></i>
         </button>
@@ -108,7 +108,7 @@
               <a class="nav-link" href="#contact-us-section">CONTACT</a>
             </li>
           </ul>
-        </div>
+        </div> --}}
         <div class="right-side-box">
           <a class="join-btn" href="/login">JOIN US</a>
         </div>
@@ -132,13 +132,13 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-lg-12 text-center">
               <h3 class="banner-bottom-text">
                 A Profitable platform for high-margin SPORT investment
               </h3>
             </div>
-          </div>
+          </div> --}}
           <div class="row">
             <div class="col-lg-12 text-center">
               <div class="get-start">
@@ -149,7 +149,7 @@
         </div>
       </div>
 
-      <div class="statics-section">
+      {{-- <div class="statics-section">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-6 text-center">
@@ -199,13 +199,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
   </section>
   <!-- banner top end -->
 
   <!-- calculator top begin -->
-  <section class="calculate-aria">
+  {{-- <section class="calculate-aria">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-10">
@@ -260,7 +260,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- calculator top end -->
 
   <!-- about section begin -->
@@ -276,13 +276,12 @@
                 To meet <span>today's challenges</span>, we've created a
                 unique fund management system
               </h5>
-              <p class="about-description">
-                Riskbenefitxpro - a private financial company specializing in sports
-                betting. Our system is risk-free thanks to the development and
+              {{-- <p class="about-description">
+                Riskbenefitxpro - Our system is risk-free thanks to the development and
                 improvement of semi-automatic system of rates. We upgraded our
                 automatic system so that the last step before the rate is now
                 done by our operators.
-              </p>
+              </p> --}}
             </div>
 
             <div class="about-box">
@@ -398,7 +397,7 @@
               <h2 class="choose-subtitle">Why Should Choose Us?</h2>
               <p class="choose-title-describe">
                 Our service gives you better result and savings, as per your
-                requirement and you can manage your investments from anywhere
+                requirement and you can manage your assets from anywhere
                 either form home or work place, at any time.
               </p>
             </div>
@@ -406,7 +405,7 @@
         </div>
 
         <div class="choose-section-carousel">
-          <div class="col">
+          {{-- <div class="col">
             <div class="single-item">
               <div class="icon-box">
                 <img src="assets/img/daily-income.svg" alt="#" />
@@ -418,7 +417,7 @@
                 </h3>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="col">
             <div class="single-item">
               <div class="icon-box">
@@ -472,7 +471,7 @@
             </div>
           </div>
 
-          <div class="col">
+          {{-- <div class="col">
             <div class="single-item">
               <div class="icon-box">
                 <img src="assets/img/daily-income.svg" alt="#" />
@@ -484,7 +483,7 @@
                 </h3>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="col">
             <div class="single-item">
               <div class="icon-box">
@@ -538,7 +537,7 @@
             </div>
           </div>
 
-          <div class="col">
+          {{-- <div class="col">
             <div class="single-item">
               <div class="icon-box">
                 <img src="assets/img/daily-income.svg" alt="#" />
@@ -550,7 +549,7 @@
                 </h3>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="col">
             <div class="single-item">
               <div class="icon-box">
@@ -604,7 +603,7 @@
             </div>
           </div>
 
-          <div class="col">
+          {{-- <div class="col">
             <div class="single-item">
               <div class="icon-box">
                 <img src="assets/img/daily-income.svg" alt="#" />
@@ -616,7 +615,7 @@
                 </h3>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="col">
             <div class="single-item">
               <div class="icon-box">
@@ -676,7 +675,7 @@
   <!-- choose section end -->
 
   <!-- invest section begin -->
-  <section class="invest-section">
+  {{-- <section class="invest-section">
     <div class="overlay">
       <div class="container">
         <div class="row d-flex justify-content-center">
@@ -744,11 +743,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- invest section end -->
 
   <!-- advantage section begin -->
-  <section class="advantage-section">
+  {{-- <section class="advantage-section">
     <div class="overlay">
       <div class="container">
         <div class="row">
@@ -793,11 +792,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- advantage section end -->
 
   <!-- calculator bottom begin -->
-  <section class="calculate-aria-second">
+  {{-- <section class="calculate-aria-second">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-10">
@@ -852,11 +851,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- calculator bottom end -->
 
   <!-- affiliate section begin -->
-  <section class="affiliate-section" id="affiliate-section">
+  {{-- <section class="affiliate-section" id="affiliate-section">
     <div class="overlay">
       <div class="container">
         <div class="row d-flex justify-content-center">
@@ -886,11 +885,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- affiliate section end -->
 
   <!-- referral section begin -->
-  <section class="referral-section">
+  {{-- <section class="referral-section">
     <div class="container">
       <div class="row referral-section-item">
         <div class="col-lg-2 col-md-2 col-sm-2">
@@ -951,11 +950,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- referral section end -->
 
   <!-- deposit section begin -->
-  <section class="deposit-section">
+  {{-- <section class="deposit-section">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8 text-center">
@@ -1052,11 +1051,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- deposit section end -->
 
   <!-- transaction section begin -->
-  <section class="transaction-section">
+  {{-- <section class="transaction-section">
     <div class="right-img">
       <img class="right-ellipse1" src="assets/img/transaction-bg-ellipse-01.png" alt="#" />
       <img class="right-shape1" src="assets/img/transaction-bg-shape-01.png" alt="#" />
@@ -1072,11 +1071,11 @@
       <img class="left-shape3" src="assets/img/transaction-bg-shape-01.png" alt="#" />
       <img class="left-shape4" src="assets/img/transaction-bg-shape-01.png" alt="#" />
     </div>
-  </section>
+  </section> --}}
   <!-- transaction section end -->
 
   <!-- download section begin -->
-  <section class="download-section">
+  {{-- <section class="download-section">
     <div class="container">
       <div class="row">
         <div class="col-lg-7 col-md-7">
@@ -1132,11 +1131,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- download section end -->
 
   <!-- testimonial section begin -->
-  <section class="testimonial-section">
+  {{-- <section class="testimonial-section">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
@@ -1253,11 +1252,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- testimonial section end -->
 
   <!-- questions section begin -->
-  <div class="questions-section">
+  {{-- <div class="questions-section">
     <div class="container">
       <div class="row text-center">
         <div class="col-lg-12">
@@ -1608,11 +1607,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- questions section end -->
 
   <!-- signup section begin -->
-  <section class="signup-section">
+  {{-- <section class="signup-section">
     <div class="overlay">
       <div class="container">
         <div class="row">
@@ -1635,7 +1634,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- signup section end -->
 
   <!-- contact-us section begin -->
@@ -1655,7 +1654,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-lg-6">
           <div class="contact-img">
             <img src="assets/img/contact-us.jpg" alt="#" />
@@ -1675,7 +1674,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
   </section>
   <!-- contact-us section end -->
@@ -1769,6 +1768,9 @@
 
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
   </script>
+
+  {{-- chatway --}}
+  <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=IuDBje7xd2BU"></script>
 
 </body>
 
