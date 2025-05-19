@@ -6,7 +6,7 @@
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>HOME - RISKBENEFITPRO</title>
+  <title>HOME - RISKBENEFITXPRO</title>
   <!--Favicon-->
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
   <!--icofont icon css-->
@@ -78,7 +78,7 @@
       <div class="container">
         <div class="logo-section">
           <a class="logo-title navbar-brand" href="#"><img src="{{ asset('assets/img/logo.png') }}"
-              alt="logo" />RISKBENEFITPRO</a>
+              alt="logo" />RISKBENEFITXPRO</a>
         </div>
 
         {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
