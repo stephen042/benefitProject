@@ -64,7 +64,7 @@
                                 <td style="text-align: center; padding-bottom:25px; color: #a3a3a3 !important;">
                                   <h2>
                                   <a href="#">
-                                     PhantomXPro
+                                     {{ env('APP_NAME') }}
                                     </a>
                                   </h2>
                                 </td>
@@ -96,7 +96,7 @@
                         <tbody>
                             <tr>
                                 <td style="text-align: center; padding:25px 20px 0;">
-                                    <p style="font-size: 13px;">Copyright © {{ date('Y') }} {{ ucwords(config('APP_NAME'))}}. All rights reserved. <br> .</p>
+                                    <p style="font-size: 13px;">Copyright © {{ date('Y') }} {{ ucwords(env('APP_NAME'))}}. All rights reserved. <br> .</p>
                                     
                                 </td>
                             </tr>
