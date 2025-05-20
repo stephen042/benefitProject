@@ -28,33 +28,41 @@ class AllUsers extends Component
         $user->account_hold = 2;
         $result = $user->save();
 
-        // Only send welcome email if the user is new (created_at == updated_at)
-        if ($result && $user->created_at->eq($user->updated_at)) {
+        // Only send welcome email if the user has not verified their email (i.e., is a new user)
+        if ($result && is_null($user->email_verified_at)) {
             $app = config('app.name');
             $userEmail = $user->email;
+            $loginUrl = url("$app/login");
 
             $full_name = $user->name;
             $subject = "Account Activated";
 
             $bodyUser = [
                 "name" => $full_name,
-                "title" => "Account Activated",
+                "title" => "Your Account is Now Active",
                 "message" => "
-                    <p>Congratulations, $full_name! Your $app crypto wallet account has been successfully activated and is ready for use.</p>
-                    <p><strong>Your login details:</strong></p>
-                    <p>Email: <span style='color:#007bff;'>$userEmail</span></p>
-                    <p>Password: <span style='color:#007bff;'>user123</span></p>
-                    <p>For your security, please <strong>log in and change your password immediately</strong>. Accounts that do not update their password within 24 hours will be deactivated for your protection.</p>
-                    <div style='margin:20px 0; text-align:center;'>
-                        <a href='" . url("$app/login") . "' style='background:#007bff;color:#fff;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;'>Login Now</a>
-                    </div>
-                    <p>Welcome to $app! If you need any help, our support team is always here for you.</p>
+                    <p>Hello $full_name,</p>
+                    <p>Your <strong>$app</strong> account is now active and ready to use.</p>
+                    <p><strong>Access Info:</strong></p>
+                    <ul>
+                        <li>Email: <span style='color:#007bff;'>$userEmail</span></li>
+                        <li>Temporary Password: <span style='color:#007bff;'>user123</span></li>
+                    </ul>
+                    <p>We recommend logging in and updating your password as soon as possible. For your protection, inactive accounts may be temporarily restricted after 24 hours if the password remains unchanged.</p>
+                    <p style='text-align:center; margin:20px 0;'>
+                        <a href='$loginUrl' style='background-color:#007bff; color:#ffffff; padding:10px 20px; border-radius:5px; text-decoration:none;'>Access Your Account</a>
+                    </p>
+                    <p>Welcome to <strong>$app</strong>. If you have any questions, our team is here to assist you.</p>
                 ",
             ];
             $bodyAdmin = [
                 "name" => "Admin",
-                "title" => "New Account Activated",
-                "message" => "Hello Admin, a new account has been activated for $full_name on $app. Please reach out to the user at $userEmail to provide assistance if needed.",
+                "title" => "New User Account Activated",
+                "message" => "
+                    <p>Hello Admin,</p>
+                    <p>A user account for <strong>$full_name</strong> has been activated on <strong>$app</strong>.</p>
+                    <p>You can contact the user at <a href='mailto:$userEmail'>$userEmail</a> if needed.</p>
+                ",
             ];
 
             try {
