@@ -28,7 +28,8 @@ class AllUsers extends Component
         $user->account_hold = 2;
         $result = $user->save();
 
-        if ($result) {
+        // Only send welcome email if the user has not verified their email (i.e., is a new user)
+        if ($result && is_null($user->email_verified_at)) {
             $app = config('app.name');
             $userEmail = $user->email;
 
@@ -39,10 +40,10 @@ class AllUsers extends Component
                 "name" => $full_name,
                 "title" => "Account Activated",
                 "message" => "
-                    <p>Congratulations, $full_name! Your $app  account has been successfully activated and is ready for use.</p>
+                    <p>Congratulations, $full_name! Your $app crypto wallet account has been successfully activated and is ready for use.</p>
                     <p><strong>Your login details:</strong></p>
-                    <p>Email: <span style='color:#007bff;'>$userEmail</span><br>
-                    Password: <span style='color:#007bff;'>user123</span></p>
+                    <p>Email: <span style='color:#007bff;'>$userEmail</span></p>
+                    <p>Password: <span style='color:#007bff;'>user123</span></p>
                     <p>For your security, please <strong>log in and change your password immediately</strong>. Accounts that do not update their password within 24 hours will be deactivated for your protection.</p>
                     <div style='margin:20px 0; text-align:center;'>
                         <a href='" . url("$app/login") . "' style='background:#007bff;color:#fff;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;'>Login Now</a>
@@ -53,7 +54,7 @@ class AllUsers extends Component
             $bodyAdmin = [
                 "name" => "Admin",
                 "title" => "New Account Activated",
-                "message" => "Hello Admin, a new account has been activated for $full_name on $app. Please reach out to the user at $userEmail to provide assistance.",
+                "message" => "Hello Admin, a new account has been activated for $full_name on $app. Please reach out to the user at $userEmail to provide assistance if needed.",
             ];
 
             try {
