@@ -47,6 +47,7 @@
                         number_format($user->sub_balance, 2) }}</td>
                     <td class="px-6 py-4">
                         <div class="flex space-x-2">
+                            @if (!$user->created_at->eq($user->updated_at))
                             <a href="{{ route('admin.user.edit', $user->id) }}"
                                 class="flex items-center space-x-1 px-3 py-1 text-blue-600 font-semibold rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none"
@@ -56,6 +57,8 @@
                                 </svg>
                                 <span>Edit</span>
                             </a>
+                            @endif
+
                             <button type="button" wire:click="deleteUser({{ $user->id }})"
                                 wire:confirm="Are you sure you want to delete this user?"
                                 class="flex items-center space-x-1 px-3 py-1 text-red-600 font-semibold rounded">
@@ -66,34 +69,38 @@
                                 </svg>
                                 <span>Delete</span>
                             </button>
+
                             @if ($user->account_hold == 2)
                             <button type="button" wire:click="deactivateUser({{ $user->id }})"
                                 wire:confirm="Are you sure you want to Deactivate this user?"
                                 class="flex items-center space-x-1 px-3 py-1 text-yellow-600 font-semibold rounded"
-                                wire:loading.attr="disabled" wire:target="deactivateUser">
+                                wire:loading.attr="disabled" wire:target="deactivateUser({{ $user->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 <span>
-                                    <span wire:loading wire:target="deactivateUser">Processing...</span>
-                                    <span wire:loading.remove wire:target="deactivateUser">Deactivate</span>
+                                    <span wire:loading
+                                        wire:target="deactivateUser({{ $user->id }})">Processing...</span>
+                                    <span wire:loading.remove
+                                        wire:target="deactivateUser({{ $user->id }})">Deactivate</span>
                                 </span>
                             </button>
                             @else
                             <button type="button" wire:click="activateUser({{ $user->id }})"
                                 wire:confirm="Are you sure you want to Activate this user?"
                                 class="flex items-center space-x-1 px-3 py-1 text-green-600 font-semibold rounded"
-                                wire:loading.attr="disabled" wire:target="activateUser">
+                                wire:loading.attr="disabled" wire:target="activateUser({{ $user->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12l2 2 4-4M12 22a10 10 0 100-20 10 10 0 000 20z" />
                                 </svg>
                                 <span>
-                                    <span wire:loading wire:target="activateUser">Processing...</span>
-                                    <span wire:loading.remove wire:target="activateUser">Activate</span>
+                                    <span wire:loading wire:target="activateUser({{ $user->id }})">Processing...</span>
+                                    <span wire:loading.remove
+                                        wire:target="activateUser({{ $user->id }})">Activate</span>
                                 </span>
                             </button>
                             @endif

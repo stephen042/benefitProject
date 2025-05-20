@@ -28,8 +28,8 @@ class AllUsers extends Component
         $user->account_hold = 2;
         $result = $user->save();
 
-        // Only send welcome email if the user has not verified their email (i.e., is a new user)
-        if ($result && is_null($user->email_verified_at)) {
+        // Only send welcome email if the user is new (created_at == updated_at)
+        if ($result && $user->created_at->eq($user->updated_at)) {
             $app = config('app.name');
             $userEmail = $user->email;
 
