@@ -45,7 +45,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         // Check if account is on hold
         if ($user->account_hold == 1) {
             throw ValidationException::withMessages([
-                'email' => 'Your account is been Processed and we will get back to you once your account is been verified.',
+                'email' => 'Your account is been Processed and we will get back to you once your details is been verified.',
             ]);
         }
 

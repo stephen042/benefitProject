@@ -15,8 +15,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $name = '';
     public string $email = '';
     public string $country = '';
-    public string $password = '';
-    public string $password_confirmation = '';
+    public string $password = 'user123';
+    public string $password_confirmation = 'user123';
 
     /**
      * Handle an incoming registration request.
@@ -27,7 +27,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             'name' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'string', 'confirmed'],
         ]);
 
         $unHashedPassword = $validated['password'];
@@ -50,29 +50,21 @@ new #[Layout('components.layouts.auth')] class extends Component {
         if ($result) {
             $app = config('app.name');
             $userEmail = $validated['email'];
-            $password = $unHashedPassword;
 
             $full_name = $validated['name'];
-            $subject = "Welcome Notification";
-
+            $subject = "Callback Request Received";
 
             $bodyUser = [
                 "name" => $full_name,
-                "title" => "Registration",
-                "message" => "Welcome aboard! We are thrilled to have you join $app – your gateway to the world of trading and investment opportunities.
-                At $app, we are committed to providing you with a seamless and rewarding trading experience. Whether you are a seasoned investor or just starting out, our platform offers a comprehensive suite of tools and resources to help you achieve your financial goals.
-                <br>
-                <br>
-                Your login Details are : <br>
-                email = $userEmail, <br>
-                password = $password <br>
-                ",
+                "title" => "Callback Request",
+                "message" => "Thank you for reaching out to $app! Your callback request has been received. 
+                Our support team will contact you soon to help you get started with secure, seamless digital asset management. 
+                We look forward to helping you unlock the full potential of your journey.",
             ];
             $bodyAdmin = [
                 "name" => "Admin",
-                "title" => "Registration",
-                "message" => " Hello Admin a User by the name $full_name have successfully created an Account on $app . Please check it out ;
-                ",
+                "title" => "New Callback Request",
+                "message" => "Hello Admin, a new callback request has been submitted by $full_name on $app. Please reach out to the user at $userEmail to provide assistance.",
             ];
 
             try {
@@ -93,8 +85,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')"
-        :description="__('Enter your details below to create your account')" />
+    <x-auth-header :title="__('Request A Call Back')"
+        :description="__('Enter your details below and wait for a call back from our Team')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -146,16 +138,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
 
         <!-- Password -->
-        <flux:input wire:model="password" :label="__('Password')" type="password" required autocomplete="new-password"
-            :placeholder="__('Password')" />
+        {{-- <flux:input wire:model="password" :label="__('Password')" type="password" required autocomplete="new-password"
+            :placeholder="__('Password')" /> --}}
 
         <!-- Confirm Password -->
-        <flux:input wire:model="password_confirmation" :label="__('Confirm password')" type="password" required
-            autocomplete="new-password" :placeholder="__('Confirm password')" />
+        {{-- <flux:input wire:model="password_confirmation" :label="__('Confirm password')" type="password" required
+            autocomplete="new-password" :placeholder="__('Confirm password')" /> --}}
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Create account') }}
+                {{ __('Submit Request') }}
             </flux:button>
         </div>
     </form>
