@@ -17,11 +17,11 @@ class Send extends Component
     public $amount;
 
     protected $rules = [
-        'amount' => ['required', 'numeric', 'min:100000'],
+        'amount' => ['required', 'numeric', 'min:100'],
     ];
     protected $messages = [
         'amount.required' => 'Please input amount',
-        'amount.min' => 'Amount should be at least $100,000',
+        'amount.min' => 'Amount should be at least $100',
     ];
 
     #[Validate('required')]
