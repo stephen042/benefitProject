@@ -3,7 +3,7 @@
 use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\SendController;
-use App\Http\Controllers\user\SwapController;
+use App\Http\Controllers\User\SwapController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\ReceiveController;
