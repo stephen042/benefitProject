@@ -86,8 +86,8 @@
             <!-- MAX Button -->
             <div class="flex justify-center mb-4">
                 <button @click="setMaxAmount()" :disabled="!selectedCoin" :class="{
-                    'bg-purple-600 hover:bg-purple-700': selectedCoin,
-                    'bg-purple-600 hover:bg-purple-700 cursor-not-allowed': !selectedCoin
+                    'bg-purple-500 hover:bg-purple-700': selectedCoin,
+                    'bg-purple-500 hover:bg-purple-700 cursor-not-allowed': !selectedCoin
                     }" class="px-6 py-3 rounded-lg font-bold transition-colors">
                     MAX
                 </button>
@@ -107,7 +107,7 @@
                         <p class="text-sm mt-1">Minimum 20 XRP required for transaction fees</p>
 
                         <button @click="showDepositModal = true"
-                            class="w-full mt-3 py-2 rounded-lg font-bold bg-purple-600 hover:bg-purple-700 transition-colors">
+                            class="w-full mt-3 py-2 rounded-lg font-bold bg-purple-500 hover:bg-purple-700 transition-colors">
                             Deposit XRP
                         </button>
                     </div>
