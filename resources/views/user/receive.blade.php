@@ -201,7 +201,7 @@
                     </div>
 
                     <!-- XRP -->
-                    <div
+                    {{-- <div
                         class="flex items-center justify-between border border-gray-200 dark:border-gray-600 rounded-xl p-2 dark:bg-gray-700 lg:w-1/2">
                         <div class="flex items-center space-x-2">
                             <!-- image -->
@@ -237,7 +237,7 @@
                                 </svg>
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
     </div>

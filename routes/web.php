@@ -3,6 +3,7 @@
 use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\SendController;
+use App\Http\Controllers\user\SwapController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\ReceiveController;
@@ -23,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('dashboard');
         Route::get('/receive', [ReceiveController::class, 'receive'])->name('user.receive');
         Route::get('/send', [SendController::class, 'send'])->name('user.send');
-        Route::view('/swap', 'user.swap')->name('user.swap');
+        Route::get('/swap', [SwapController::class, 'showSwap'])->name('user.swap');
         Route::get('/trade', [TradeController::class, 'trade'])->name('user.trade');
 
         // history routes
