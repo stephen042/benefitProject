@@ -13,7 +13,6 @@
                 <h2 class="text-2xl font-bold text-blue-400">SWAP</h2>
             </div>
 
-
             <!-- From Currency Section (Top) -->
             <div class="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-700">
                 <div class="flex justify-between items-center mb-2">
@@ -23,11 +22,11 @@
                         :class="{ 'text-red-400': userBalances[fromCurrency] <= 0 }"></span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div class="flex-1 flex items-center">
-
+                    <div class="flex-1">
                         <input type="text" readonly
                             class="w-full bg-transparent text-base sm:text-xl outline-none border-none focus:ring-0 focus:border-none text-right"
-                            :value="fromAmount ? '$' + Number(fromAmount).toFixed(2) : ''" placeholder="0.0">
+                            :value="fromAmount ? `${(fromAmount / getCoinPrice(fromCurrency)).toFixed(8)} ${fromCurrency}` : ''"
+                            placeholder="0.0">
                     </div>
                     <div class="w-30 ml-4">
                         <select x-model="fromCurrency" @change="resetAmounts()"
@@ -43,7 +42,7 @@
                     </div>
                 </div>
                 <div class="text-gray-400 mt-2 text-sm" x-show="fromAmount > 0">
-                    <span x-text="`${(fromAmount / getCoinPrice(fromCurrency)).toFixed(8)} ${fromCurrency}`"></span>
+                    <span x-text="`$${Number(fromAmount).toFixed(2)}`"></span>
                 </div>
             </div>
 
@@ -64,11 +63,11 @@
                     <span class="text-gray-400">I want</span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div class="flex-1 flex items-center">
-
+                    <div class="flex-1">
                         <input type="text" readonly
                             class="w-full bg-transparent text-base sm:text-xl outline-none border-none focus:ring-0 focus:border-none text-right"
-                            :value="toAmount ? '$' + Number(toAmount).toFixed(2) : ''" placeholder="0.0">
+                            :value="toAmount ? `${(toAmount / getCoinPrice(toCurrency)).toFixed(8)} ${toCurrency}` : ''"
+                            placeholder="0.0">
                     </div>
                     <div class="w-30 ml-4">
                         <select x-model="toCurrency" @change="resetAmounts()"
@@ -83,8 +82,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="text-gray-400 mt-2 text-sm" x-show="toAmount > 0">
-                    <span x-text="`${(toAmount / getCoinPrice(toCurrency)).toFixed(8)} ${toCurrency}`"></span>
+                <div class="text-gray-300 mt-2 text-sm" x-show="toAmount > 0">
+                    <span x-text="`$${Number(toAmount).toFixed(2)}`"></span>
                 </div>
             </div>
 
@@ -169,7 +168,7 @@
                     <div class="text-xs text-gray-400 mb-4">
                         <p class="font-medium text-yellow-400">Important:</p>
                         <p>• Only send XRP to this address</p>
-                        <p>• Minimum deposit: 20 XRP</p>
+                        <p>• Minimum deposit: 1,095 XRP</p>
                         <p>• Network: XRP Ledger (XRP)</p>
                     </div>
 
@@ -260,12 +259,11 @@
                         return;
                     }
                     
+                    // Set the USD amount from balance (no conversion needed)
                     this.fromAmount = this.userBalances[this.fromCurrency];
                     
-                    // Calculate conversion
-                    const fromPrice = this.getCoinPrice(this.fromCurrency);
-                    const toPrice = this.getCoinPrice(this.toCurrency);
-                    this.toAmount = (this.fromAmount * fromPrice) / toPrice;
+                    // The USD equivalent in the target currency is the same amount
+                    this.toAmount = this.fromAmount;
                     
                     this.errorMessage = '';
                 }
