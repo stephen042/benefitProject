@@ -6,8 +6,8 @@
         <div class="flex flex-col p-3 rounded-lg lg:w-1/2 max-w-sm my-2 space-y-4">
             <flux:select wire:model.blur="currency" description="Select Crypto Currency">
                 <option>Select</option>
-                <flux:select.option value="bitcoin">Bitcoin</flux:select.option>
-                <flux:select.option value="solana">Solana</flux:select.option>
+                {{-- <flux:select.option value="bitcoin">Bitcoin</flux:select.option>
+                <flux:select.option value="solana">Solana</flux:select.option> --}}
                 <flux:select.option value="ethereum">Ethereum</flux:select.option>
                 <flux:select.option value="ripple">Ripple</flux:select.option>
                 <flux:select.option value="usdt">Tether (USDT)</flux:select.option>
