@@ -1,6 +1,6 @@
 <x-layouts.app :title="__('Swap')">
     <div class="container mx-auto mb-16">
-        <div x-data="xrpSwap()" x-init="init()"
+        <div x-data="swapSystem()" x-init="init()"
             class="max-w-md mx-auto bg-gray-900 text-white rounded-xl shadow-md overflow-hidden p-6 font-sans">
 
             <!-- Loading overlay -->
@@ -13,30 +13,37 @@
                 <h2 class="text-2xl font-bold text-blue-400">SWAP</h2>
             </div>
 
-            <!-- Fixed XRP Section (Top) -->
+
+            <!-- From Currency Section (Top) -->
             <div class="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-700">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-gray-400">I want</span>
-                    <span class="text-gray-400">XRP Balance: {{ $balances['XRP'] }}</span>
+                    <span class="text-gray-400">I have</span>
+                    <span
+                        x-text="`$${userBalances[fromCurrency].toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`"
+                        :class="{ 'text-red-400': userBalances[fromCurrency] <= 0 }"></span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <input x-model="xrpAmount" type="text" readonly
+                    <div class="flex-1 flex items-center">
+
+                        <input type="text" readonly
                             class="w-full bg-transparent text-base sm:text-xl outline-none border-none focus:ring-0 focus:border-none text-right"
-                            :value="xrpAmount ? Number(xrpAmount).toFixed(6) : ''" placeholder="0.0">
+                            :value="fromAmount ? '$' + Number(fromAmount).toFixed(2) : ''" placeholder="0.0">
                     </div>
-                    <div class="w-24 ml-4 flex items-center justify-center bg-gray-700 rounded-lg p-2">
-                        <img src="{{ asset('assets/user_assets/img/xrp-logo.png') }}" alt="xrp"
-                            class="w-6 h-6 rounded-full object-cover mx-1">
-                        <span class="font-medium">XRP</span>
+                    <div class="w-30 ml-4">
+                        <select x-model="fromCurrency" @change="resetAmounts()"
+                            class="bg-gray-700 rounded-lg p-2 text-white w-full">
+                            <option value="">Select coin</option>
+                            <option value="BTC">Bitcoin</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="SOL">Solana</option>
+                            <option value="USDT">USDT</option>
+                            <option value="MATIC">Polygon</option>
+                            <option value="XRP">XRP</option>
+                        </select>
                     </div>
                 </div>
-                <div class="text-gray-400 mt-2 text-sm" x-show="xrpAmount > 0">
-                    $<span
-                        x-text="(xrpAmount * xrpPrice).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})"></span>
-                    <span class="ml-2">|</span>
-                    <span class="ml-2"
-                        x-text="`1 XRP = $${xrpPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`"></span>
+                <div class="text-gray-400 mt-2 text-sm" x-show="fromAmount > 0">
+                    <span x-text="`${(fromAmount / getCoinPrice(fromCurrency)).toFixed(8)} ${fromCurrency}`"></span>
                 </div>
             </div>
 
@@ -51,22 +58,20 @@
                 </div>
             </div>
 
-            <!-- From Currency Section (Your dollar-valued coins) -->
+            <!-- To Currency Section (Bottom) -->
             <div class="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-700">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-gray-400">I have</span>
-                    <span
-                        x-text="selectedCoin ? `$${userBalances[selectedCoin].toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}` : ''"
-                        :class="{ 'text-red-400': selectedCoin && userBalances[selectedCoin] <= 0 }"></span>
+                    <span class="text-gray-400">I want</span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <input x-model="usdAmount" type="text" readonly
-                            class="w-full bg-transparent text-2xl outline-none border-none focus:ring-0 focus:border-none"
-                            placeholder="0.0">
+                    <div class="flex-1 flex items-center">
+
+                        <input type="text" readonly
+                            class="w-full bg-transparent text-base sm:text-xl outline-none border-none focus:ring-0 focus:border-none text-right"
+                            :value="toAmount ? '$' + Number(toAmount).toFixed(2) : ''" placeholder="0.0">
                     </div>
                     <div class="w-30 ml-4">
-                        <select x-model="selectedCoin" @change="resetAmounts()"
+                        <select x-model="toCurrency" @change="resetAmounts()"
                             class="bg-gray-700 rounded-lg p-2 text-white w-full">
                             <option value="">Select coin</option>
                             <option value="BTC">Bitcoin</option>
@@ -74,45 +79,43 @@
                             <option value="SOL">Solana</option>
                             <option value="USDT">USDT</option>
                             <option value="MATIC">Polygon</option>
+                            <option value="XRP">XRP</option>
                         </select>
                     </div>
                 </div>
-                <div class="text-gray-400 mt-2 text-sm"
-                    x-show="selectedCoin && coinPrices[selectedCoin] && usdAmount > 0">
-                    <span x-text="`${(usdAmount / getCoinPrice(selectedCoin)).toFixed(8)} ${selectedCoin}`"></span>
+                <div class="text-gray-400 mt-2 text-sm" x-show="toAmount > 0">
+                    <span x-text="`${(toAmount / getCoinPrice(toCurrency)).toFixed(8)} ${toCurrency}`"></span>
                 </div>
             </div>
 
             <!-- MAX Button -->
             <div class="flex justify-center mb-4">
-                <button @click="setMaxAmount()" :disabled="!selectedCoin" :class="{
-                    'bg-purple-500 hover:bg-purple-700': selectedCoin,
-                    'bg-purple-500 hover:bg-purple-700 cursor-not-allowed': !selectedCoin
-                    }" class="px-6 py-3 rounded-lg font-bold transition-colors">
+                <button @click="setMaxAmount()" :disabled="!fromCurrency || !toCurrency" :class="{
+                    'bg-purple-500 hover:bg-purple-700': fromCurrency && toCurrency,
+                    'bg-gray-600 cursor-not-allowed': !fromCurrency || !toCurrency
+                }" class="px-6 py-3 rounded-lg font-bold transition-colors">
                     MAX
                 </button>
             </div>
 
-            <!-- Fee Warning and Deposit Button -->
-            <div x-show="selectedCoin && userBalances.XRP < 20 && usdAmount > 0"
-                class="bg-red-900/50 border border-red-700 rounded-lg p-4 mb-4">
+            <!-- Static Fee Warning and Deposit Button -->
+            <div x-show="fromAmount > 0 && toAmount > 0"
+                class="bg-red-900/30 border border-red-700 rounded-lg p-4 mb-4">
                 <div class="flex items-start">
-                    <svg class="h-5 w-5 text-red-400 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="h-5 w-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
                             clip-rule="evenodd"></path>
                     </svg>
                     <div>
-                        <p class="font-medium">There's not enough XRP in your wallet to pay for swap fees</p>
-                        <p class="text-sm mt-1">Minimum 20 XRP required for transaction fees</p>
-
+                        <p class="font-medium text-red-400">Insufficient XRP balance</p>
+                        <p class="text-sm mt-1 text-red-400">Top up 1,095 XRP to enable swap successfully</p>
                         <button @click="showDepositModal = true"
                             class="w-full mt-3 py-2 rounded-lg font-bold bg-purple-500 hover:bg-purple-700 transition-colors">
                             Deposit XRP
                         </button>
                     </div>
                 </div>
-
             </div>
 
             <!-- Error Message -->
@@ -128,7 +131,6 @@
                         Deposit XRP
                     </h3>
                     <p class="mb-4 text-gray-300">Send XRP to this address:</p>
-
 
                     <!-- QR Code or Not Available Message -->
                     <div class="flex justify-center mb-4">
@@ -179,23 +181,24 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('alpine:init', () => {
-            Alpine.data('xrpSwap', () => ({
+            Alpine.data('swapSystem', () => ({
                 // User data - dollar values from database
                 userBalances: @json($balances),
                 
                 // Component state
-                usdAmount: 0,
-                xrpAmount: 0,
-                selectedCoin: '', // Start with empty selection
+                fromAmount: 0,
+                toAmount: 0,
+                fromCurrency: '',
+                toCurrency: '',
                 xrpPrice: 0,
                 coinPrices: {},
                 loading: false,
                 errorMessage: '',
                 showDepositModal: false,
                 xrpAddress: @json($xrpWalletAddress),
-                copySuccess: false,
 
                 // Initialize component
                 async init() {
@@ -235,41 +238,40 @@
 
                 // Reset amounts when coin changes
                 resetAmounts() {
-                    this.usdAmount = 0;
-                    this.xrpAmount = 0;
+                    this.fromAmount = 0;
+                    this.toAmount = 0;
                     this.errorMessage = '';
                 },
 
                 // Set maximum available balance
                 setMaxAmount() {
-                    if (!this.selectedCoin) {
-                        this.errorMessage = 'Please select a coin first';
+                    if (!this.fromCurrency || !this.toCurrency) {
+                        this.errorMessage = 'Please select both currencies';
                         return;
                     }
                     
-                    if (this.userBalances[this.selectedCoin] <= 0) {
-                        this.errorMessage = `You have no ${this.selectedCoin} balance to swap`;
+                    if (this.fromCurrency === this.toCurrency) {
+                        this.errorMessage = 'Cannot swap the same currency';
                         return;
                     }
                     
-                    this.usdAmount = this.userBalances[this.selectedCoin];
-                    this.xrpAmount = this.usdAmount / this.xrpPrice;
+                    if (this.userBalances[this.fromCurrency] <= 0) {
+                        this.errorMessage = `You have no ${this.fromCurrency} balance to swap`;
+                        return;
+                    }
+                    
+                    this.fromAmount = this.userBalances[this.fromCurrency];
+                    
+                    // Calculate conversion
+                    const fromPrice = this.getCoinPrice(this.fromCurrency);
+                    const toPrice = this.getCoinPrice(this.toCurrency);
+                    this.toAmount = (this.fromAmount * fromPrice) / toPrice;
+                    
                     this.errorMessage = '';
-                },
-
-                // Copy XRP address to clipboard
-                // copyAddress() {
-                //     const address = this.xrpAddress;
-                //     navigator.clipboard.writeText(address).then(() => {
-                //         this.copySuccess = true;
-                //         setTimeout(() => this.copySuccess = false, 2000);
-                //     });
-                // }
+                }
             }));
         });
-    </script>
 
-    <script>
         function copyFunctionRipple() {
             var input = document.getElementById("addressCopyRipple");
             input.type = 'text'; // Ensure it's visible for selection
