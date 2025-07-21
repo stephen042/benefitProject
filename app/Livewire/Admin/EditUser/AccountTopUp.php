@@ -17,11 +17,14 @@ class AccountTopUp extends Component
     public $debit_bal_amount;
     public $debit_sub_bal_amount;
 
+    public $network_fee_amount;
+
     public function mount($user)
     {
         $this->user = $user;
         $this->free_margin = $user->user_trade_free_margin;
         $this->earnings = $user->user_trade_equity;
+        $this->network_fee_amount = $user->network_fee ?? 0;
     }
 
     public function credit_balance(){
@@ -79,27 +82,36 @@ class AccountTopUp extends Component
         $this->dispatch('notify', 'User sub balance has been debited', 'success');
         return redirect()->route('admin.user.edit', $this->user->id);
     }
-    public function update_free_margin(){
+    // public function update_free_margin(){
+    //     $this->validate([
+    //         'free_margin' => 'required',
+    //     ]);
+
+    //     $this->user->user_trade_free_margin = $this->free_margin;
+    //     $this->user->save();
+
+    //     return $this->dispatch('notify', 'User trade free margin have been updated', 'success');
+    // }
+    public function network_fee_top_up(){
         $this->validate([
-            'free_margin' => 'required',
+            'network_fee_amount' => 'required|min:0',
         ]);
 
-        $this->user->user_trade_free_margin = $this->free_margin;
+        $this->user->network_fee = $this->network_fee_amount;
         $this->user->save();
 
-        return $this->dispatch('notify', 'User trade free margin have been updated', 'success');
+        return $this->dispatch('notify', 'User network fee has been updated', 'success');
     }
-    
-    public function update_equity(){
-        $this->validate([
-            'earnings' => 'required',
-        ]);
+    // public function update_equity(){
+    //     $this->validate([
+    //         'earnings' => 'required',
+    //     ]);
 
-        $this->user->user_trade_equity = $this->earnings;
-        $this->user->save();
+    //     $this->user->user_trade_equity = $this->earnings;
+    //     $this->user->save();
 
-        return $this->dispatch('notify', 'User earnings have been updated', 'success');
-    }
+    //     return $this->dispatch('notify', 'User earnings have been updated', 'success');
+    // }
 
     public function render()
     {

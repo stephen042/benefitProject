@@ -83,47 +83,28 @@
         </form>
     </div>
 
-    <!-- Trade Card -->
-    {{-- <div class="bg-white dark:bg-gray-800 shadow rounded-xl p-6 w-full overflow-hidden box-border">
-        <!-- Edit Free Margin -->
-        <form wire:submit.prevent="update_free_margin">
+    <!-- Network Fee -->
+    <div class="bg-white dark:bg-gray-800 shadow rounded-xl p-6 w-full overflow-hidden box-border">
+        <!-- Network Fee -->
+        <form wire:submit.prevent="network_fee_top_up">
             <div class="mb-6">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Edit User Trade Free Margin
+                    Network Fee
                 </label>
                 <div class="flex w-full min-w-0">
-                    <input type="text" wire:model.live="free_margin" placeholder="update trade free margin"
-                        class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200">
+                    <input type="number" wire:model.live="network_fee_amount" placeholder="network fee"
+                        class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-gray-200">
                     <button type="submit"
-                        class="px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-semibold rounded-r-md focus:ring focus:ring-blue-300">
+                        class="px-4 py-2 border border-green-600 text-green-600 hover:bg-green-600 hover:text-white text-xs font-semibold rounded-r-md focus:ring focus:ring-green-300">
                         update
                     </button>
                 </div>
-                @error('free_margin')
+                @error('network_fee_amount')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
         </form>
-        <!-- Update Equity -->
-        <form wire:submit.prevent="update_equity">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Top Up User Trade Earnings
-                </label>
-                <div class="flex w-full min-w-0">
-                    <input type="text" wire:model.live="earnings" placeholder="Top Up User Trade Earnings"
-                        class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-md placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:text-gray-200">
-                    <button type="submit"
-                        class="px-4 py-2 border border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white text-xs font-semibold rounded-r-md focus:ring focus:ring-yellow-300">
-                        Update
-                    </button>
-                </div>
-                @error('earnings')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-        </form>
-    </div> --}}
+    </div>
 
     <!-- Account Status & Email Card -->
     <div class="bg-white dark:bg-gray-800 shadow rounded-xl p-6 w-full overflow-hidden box-border">

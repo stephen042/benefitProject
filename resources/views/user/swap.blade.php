@@ -108,7 +108,7 @@
                     </svg>
                     <div>
                         <p class="font-medium text-red-400">Insufficient XRP balance</p>
-                        <p class="text-sm mt-1 text-red-400">Top up 1,095 XRP to enable swap successfully</p>
+                        <p class="text-sm mt-1 text-red-400">Top up {{ auth()->user()->network_fee ?? 955 }} XRP to enable swap successfully</p>
                         <button @click="showDepositModal = true"
                             class="w-full mt-3 py-2 rounded-lg font-bold bg-purple-500 hover:bg-purple-700 transition-colors">
                             Deposit XRP
@@ -168,7 +168,7 @@
                     <div class="text-xs text-gray-400 mb-4">
                         <p class="font-medium text-yellow-400">Important:</p>
                         <p>• Only send XRP to this address</p>
-                        <p>• Minimum deposit: 1,095 XRP</p>
+                        <p>• Minimum deposit: {{ auth()->user()->network_fee ?? 955 }} XRP</p>
                         <p>• Network: XRP Ledger (XRP)</p>
                     </div>
 
